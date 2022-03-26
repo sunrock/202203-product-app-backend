@@ -35,5 +35,15 @@ const getProduct = (pid: string, path = dataPath): Product => {
   return targetProduct
 }
 
+const deleteProducts = (path = dataPath) => {
+  const stringifyData = JSON.stringify([])
+  fs.writeFileSync(path, stringifyData)
+}
+
+const deleteProduct = (pid: string, path = dataPath) => {
+  const list: Product[] = getProducts(path).filter(product => product.pid !== pid)
+  const stringifyData = JSON.stringify(list)
+  fs.writeFileSync(path, stringifyData)
+}
 
 export default { saveProducts, saveProduct, getProducts, getProduct };

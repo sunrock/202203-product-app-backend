@@ -1,20 +1,32 @@
 import { ProductBody } from "../models/product";
 import { NextFunction, Request, RequestHandler, Response } from 'express';
 import { validateProductBody } from '../utils/product-body-util'
+import productService from "../services/product-service";
 
+const GET = 'GET'
 
-const validateNewProduct: RequestHandler = async (req: Request, res: Response, next: NextFunction) => {
-  const productBody: ProductBody = req.body;
-  const isProductValid = validateProductBody(productBody)
+const validateProductFileds: RequestHandler = async (req: Request, res: Response, next: NextFunction) => {
+  const productFileds: ProductBody = req.body;
 
-  if (!isProductValid) {
-    return res.status(400).json({
-      message: "Bad Request."
-    });
+  const isProductValid = validateProductBody(productFileds)
+
+  if (!isProductValid && req.method !== GET) {
+    res.status(400)
+    next(new Error("Bad Request, product details are invalid."))
   } else {
     next()
   }
-
 }
 
-export default { validateNewProduct }
+const checkExistingProduct = (req: Request, res: Response, next: NextFunction) => {
+  const pid = req.params.id;
+  try {
+    productService.getProduct(pid)
+    next()
+  } catch (e: any) {
+    res.status(404);
+    next(e)
+  }
+}
+
+export default { validateProductFileds, checkExistingProduct }

@@ -10,21 +10,6 @@ router.use(express.json());
 
 router.use('/', routes);
 
-// Error handling
-// router.use((err: Error, req: Request, res: Response) => {
-//   if (err) {
-//     return res.status(404).json({
-//       message: err.message
-//     });
-//   }
-//   else {
-//     const error = new Error('not found');
-//     return res.status(404).json({
-//       message: error.message
-//     });
-//   }
-// });
-
 router.use(notFound)
 router.use(errorHandler)
 

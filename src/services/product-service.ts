@@ -2,27 +2,23 @@ import { v4 as uuidv4 } from 'uuid';
 import { Product, ProductBody } from '../models/product';
 import fileIO from '../utils/file-io';
 
-
-
-
-
-const addProduct = async (productBody: ProductBody) => {
+const addProduct = async (productFileds: ProductBody) => {
   // add the product
-  let products: Product[] = await fileIO.getProducts()
+  let productIds: string[] = fileIO.getProducts().map(pd => pd.pid)
 
   // new product id
   let pid = uuidv4();
 
-  console.log()
-
-  let newAccount: Product = {
-    pid,
-    ...productBody
+  let newPid = uuidv4();
+  while (productIds.includes(newPid)) {
+    newPid = uuidv4();
   }
 
-  let newAccounts = products.concat(newAccount)
+  let newProduct: Product = {
+    pid, ...productFileds
+  }
 
-  fileIO.saveProducts(newAccounts);
+  fileIO.saveProduct(newProduct);
 }
 
 const getProduct = (pid: string): Product => {
@@ -36,4 +32,28 @@ const getProduct = (pid: string): Product => {
   }
 }
 
-export default { getProduct }
+const getProducts = () => {
+  return fileIO.getProducts()
+}
+
+const patchProduct = (pid: string, productFileds: ProductBody) => {
+
+  const patched: Product = {
+    pid, ...productFileds
+  }
+
+  const list: Product[] = fileIO.getProducts()
+
+  const newList = list.map(product => {
+    if (product.pid !== pid)
+      return product
+    else {
+      return patched
+    }
+  })
+
+  fileIO.saveProducts(newList)
+
+}
+
+export default { addProduct, getProduct, getProducts, patchProduct }

@@ -4,16 +4,14 @@ import productValidator from '../controllers/product-validator';
 
 const router = express.Router();
 
-router.use('product/new', productValidator.validateNewProduct)
+router.use('/product/new', productValidator.validateProductFileds)
+router.get('/products', productController.getProducts)
+
+router.use('/product/:id', productValidator.checkExistingProduct)
+router.use('/product/:id', productValidator.validateProductFileds)
+
 router.get('/product/:id', productController.getProduct);
-
-// router.post('/product/new', productController.addBankAccount);
-
-// router.get('/balance/:id', productController.getBalance);
-// router.get('/total-balance', productController.getTotalBalance);
-// router.post('/accounts', productController.addBankAccount);
-// router.post('/transfer', productController.transfer)
-// router.post('/deposit', productController.deposit)
-// router.post('/withdraw', productController.withdraw)
+router.put('/product/:id', productController.editProduct);
+router.patch('/product/:id', productController.editProduct);
 
 export = router

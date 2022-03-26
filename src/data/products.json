@@ -2,7 +2,14 @@
   {
     "pid": "abc",
     "name": "abc",
-    "pirce": 12.3,
+    "price": 12.3,
+    "type": "Toys",
+    "isActive": true
+  },
+  {
+    "pid": "def",
+    "name": "def",
+    "price": 13.6,
     "type": "Toys",
     "isActive": true
   }

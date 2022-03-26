@@ -21,14 +21,20 @@ const getProducts = (req: Request, res: Response) => {
   return res.status(200).json({ data: products, message: "Products Retrieved Successfully" });
 }
 
-const editProduct = (req: Request, res: Response, next: NextFunction) => {
+const editProduct = (req: Request, res: Response) => {
   const pid = req.params.id;
   const productFileds: ProductBody = req.body;
   productService.patchProduct(pid, productFileds)
   return res.status(200).json({ message: "Product Updated Successfully" });
 }
 
-export default { addProduct, getProduct, getProducts, editProduct }
+const deleteProduct = (req: Request, res: Response) => {
+  const pid = req.params.id;
+  productService.deleteProduct(pid)
+  return res.status(200).json({ message: "Product Deleted Successfully" });
+}
+
+export default { addProduct, getProduct, getProducts, editProduct, deleteProduct }
 
 
 

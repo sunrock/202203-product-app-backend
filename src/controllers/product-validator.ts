@@ -3,7 +3,7 @@ import { NextFunction, Request, RequestHandler, Response } from 'express';
 import { validateProductBody } from '../utils/product-body-util'
 import productService from "../services/product-service";
 
-const GET = 'GET'
+const METHODS = ["GET", "DELETE"]
 
 const validateProductFileds: RequestHandler = (req: Request, res: Response, next: NextFunction) => {
   const productFileds: ProductBody = req.body;
@@ -12,7 +12,7 @@ const validateProductFileds: RequestHandler = (req: Request, res: Response, next
 
   const isProductValid = validateProductBody(productFileds)
 
-  if (!isProductValid && req.method !== GET) {
+  if (!isProductValid && !METHODS.includes(req.method)) {
     res.status(400)
     next(new Error("Bad Request, product details are invalid."))
   } else {

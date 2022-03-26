@@ -15,5 +15,6 @@ router.use('/product/:id', productValidator.validateProductFileds)
 router.get('/product/:id', productController.getProduct);
 router.put('/product/:id', productController.editProduct);
 router.patch('/product/:id', productController.editProduct);
+router.delete('/product/:id', productController.deleteProduct);
 
 export = router

@@ -46,4 +46,4 @@ const deleteProduct = (pid: string, path = dataPath) => {
   fs.writeFileSync(path, stringifyData)
 }
 
-export default { saveProducts, saveProduct, getProducts, getProduct };
+export default { saveProducts, saveProduct, getProducts, getProduct, deleteProducts, deleteProduct };

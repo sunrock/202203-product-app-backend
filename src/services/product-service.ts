@@ -55,7 +55,10 @@ const patchProduct = (pid: string, productFileds: ProductBody) => {
   })
 
   fileIO.saveProducts(newList)
-
 }
 
-export default { addProduct, getProduct, getProducts, patchProduct }
+const deleteProduct = (pid: string) => {
+  fileIO.deleteProduct(pid)
+}
+
+export default { addProduct, getProduct, getProducts, patchProduct, deleteProduct }

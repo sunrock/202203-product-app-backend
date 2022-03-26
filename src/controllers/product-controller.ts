@@ -4,27 +4,10 @@ import productService from '../services/product-service';
 import { validateProductBody } from '../utils/product-body-util';
 
 
-const addNewProduct = async (req: Request, res: Response, next: NextFunction) => {
-
-  try {
-    let product = productService.getProducts()
-    const productFileds: ProductBody = req.body;
-
-    const isProductValid = validateProductBody(productFileds)
-
-    if (!isProductValid) {
-      return res.status(400).json({
-        message: "Bad Request, product details are invalid."
-      });
-    } else {
-      productService.addProduct(productFileds)
-      return res.status(200).json({ message: "Product Updated Successfully" });
-    }
-
-  } catch (e: any) {
-    res.status(404);
-    next(e)
-  }
+const addProduct = async (req: Request, res: Response) => {
+  const productFileds: ProductBody = req.body;
+  productService.addProduct(productFileds)
+  return res.status(201).json({ message: "Product Added Successfully" });
 }
 
 const getProduct = (req: Request, res: Response) => {
@@ -42,9 +25,10 @@ const editProduct = (req: Request, res: Response, next: NextFunction) => {
   const pid = req.params.id;
   const productFileds: ProductBody = req.body;
   productService.patchProduct(pid, productFileds)
+  return res.status(200).json({ message: "Product Updated Successfully" });
 }
 
-export default { addNewProduct, getProduct, getProducts, editProduct }
+export default { addProduct, getProduct, getProducts, editProduct }
 
 
 

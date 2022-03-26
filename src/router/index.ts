@@ -4,7 +4,9 @@ import productValidator from '../controllers/product-validator';
 
 const router = express.Router();
 
-router.use('/product/new', productValidator.validateProductFileds)
+router.use('/product', productValidator.validateProductFileds)
+router.post('/product', productController.addProduct)
+
 router.get('/products', productController.getProducts)
 
 router.use('/product/:id', productValidator.checkExistingProduct)

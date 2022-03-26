@@ -2,12 +2,14 @@ import { v4 as uuidv4 } from 'uuid';
 import { Product, ProductBody } from '../models/product';
 import fileIO from '../utils/file-io';
 
-const addProduct = async (productFileds: ProductBody) => {
+const addProduct = (productFileds: ProductBody) => {
   // add the product
   let productIds: string[] = fileIO.getProducts().map(pd => pd.pid)
 
   // new product id
   let pid = uuidv4();
+
+  console.log("pid", pid)
 
   let newPid = uuidv4();
   while (productIds.includes(newPid)) {

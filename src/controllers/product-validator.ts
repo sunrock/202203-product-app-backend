@@ -5,8 +5,10 @@ import productService from "../services/product-service";
 
 const GET = 'GET'
 
-const validateProductFileds: RequestHandler = async (req: Request, res: Response, next: NextFunction) => {
+const validateProductFileds: RequestHandler = (req: Request, res: Response, next: NextFunction) => {
   const productFileds: ProductBody = req.body;
+
+  console.log('productFileds', productFileds)
 
   const isProductValid = validateProductBody(productFileds)
 

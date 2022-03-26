@@ -4,19 +4,17 @@ import { NAME_MAX_LENGH, PRICE_REGEX, TYPE_REGEX } from "../config";
 
 export const validateProductBody = (productFileds: ProductBody): boolean => {
 
-  console.log('productFileds', productFileds)
-
   const name: string = productFileds.name;
   const price: number = productFileds.price;
   const type: string = productFileds.type;
   const isActive: boolean = productFileds.isActive;
 
   console.log('name', !!name)
-  console.log('price', price, price > 0)
+  console.log('price', price > 0)
   console.log('type', !!type)
   console.log('isActive', isActive !== undefined)
 
-  const hasAllFields = !!name && price && !!type && (isActive !== undefined);
+  const hasAllFields = !!name && (price > 0) && !!type && (isActive !== undefined);
 
   console.log('hasAllFields', hasAllFields)
 

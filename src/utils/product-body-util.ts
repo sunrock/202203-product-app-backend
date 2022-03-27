@@ -1,4 +1,4 @@
-import { ProductBody, PROD_TYPE } from "../models/product";
+import { ProductBody, PROD_TYPES } from "../models/product";
 import { NAME_MAX_LENGH, PRICE_REGEX, TYPE_REGEX } from "../config";
 
 
@@ -22,7 +22,7 @@ export const validateProductBody = (productFileds: ProductBody): boolean => {
     const isNameValid = name.length <= NAME_MAX_LENGH;
     const isPriceValid = PRICE_REGEX.test(price.toString());
     const isTypeValid = TYPE_REGEX.test(type)
-    // const isTypeValid_v2 = PROD_TYPE.includes(type)
+    // const isTypeValid_v2 = PROD_TYPES.includes(type)
 
     console.log('3 checking', isNameValid, isPriceValid, isTypeValid)
 

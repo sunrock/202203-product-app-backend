@@ -1,16 +1,1 @@
-[
-  {
-    "pid": "abc",
-    "name": "abc",
-    "price": 12.3,
-    "type": "Toys",
-    "isActive": true
-  },
-  {
-    "pid": "def",
-    "name": "def",
-    "price": 13.6,
-    "type": "Toys",
-    "isActive": true
-  }
-]
+[{"pid":"c88a0a3b-b62a-4300-9c50-54fd0ba75e08","name":"abc","price":"12","type":"Furniture","isActive":true}]

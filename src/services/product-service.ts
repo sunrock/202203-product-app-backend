@@ -9,8 +9,6 @@ const addProduct = (productFileds: ProductBody) => {
   // new product id
   let pid = uuidv4();
 
-  console.log("pid", pid)
-
   let newPid = uuidv4();
   while (productIds.includes(newPid)) {
     newPid = uuidv4();
@@ -23,7 +21,7 @@ const addProduct = (productFileds: ProductBody) => {
   fileIO.saveProduct(newProduct);
 }
 
-const getProduct = (pid: string): Product => {
+const getProduct = (pid: string): Product | Error => {
 
   const targetProduct = fileIO.getProduct(pid)
   if (!targetProduct) {

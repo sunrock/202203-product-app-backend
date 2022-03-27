@@ -10,7 +10,7 @@ npm version greater than 8.5
 
 3, Run `npm i` to install node modules
 
-4, Run `npm run dev` for a dev server
+4, Run `npm run dev` for a dev server, server is hosted on `http://localhost:3000/`
 
 5, Run `npm run jest` to execute the unit tests via Jest.
 
